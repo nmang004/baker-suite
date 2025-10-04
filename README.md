@@ -174,6 +174,7 @@ npm run db:reset
 
 - **[CLAUDE.md](CLAUDE.md)** - Comprehensive development guide for Claude Code
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** - Contribution guidelines
+- **[STRATEGY.md](docs/STRATEGY.md)** - 12-week MVP roadmap and strategic plan
 - **[API.md](docs/API.md)** - API documentation
 - **[ARCHITECTURE.md](docs/ARCHITECTURE.md)** - System architecture
 - **[QUICK_START.md](docs/QUICK_START.md)** - Quick start guide
