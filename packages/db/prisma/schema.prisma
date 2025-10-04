@@ -1,0 +1,166 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  clerkId       String    @unique
+  email         String    @unique
+  firstName     String?
+  lastName      String?
+  tier          UserTier  @default(FREE)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  recipes       Recipe[]
+  bakes         Bake[]
+  starters      Starter[]
+  timelines     Timeline[]
+  weatherLogs   WeatherLog[]
+
+  @@index([clerkId])
+  @@index([email])
+}
+
+enum UserTier {
+  FREE
+  PREMIUM
+  PRO
+}
+
+model Recipe {
+  id            String    @id @default(cuid())
+  userId        String
+  name          String
+  description   String?   @db.Text
+  ingredients   Json      // Array of {name, quantity, unit, percentage}
+  instructions  Json      // Array of steps
+  tags          String[]
+  ratios        Json      // Baker's percentages
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bakes         Bake[]
+  timelines     Timeline[]
+
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model Bake {
+  id            String    @id @default(cuid())
+  userId        String
+  recipeId      String
+  rating        Int?      @default(0) // 1-5 stars
+  notes         String?   @db.Text
+  photos        String[]  // Array of URLs
+  issues        String[]  // Tags like "dense-crumb", "over-proofed"
+  weather       Json?     // Weather conditions during bake
+  createdAt     DateTime  @default(now())
+
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  recipe        Recipe    @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([recipeId])
+  @@index([createdAt])
+}
+
+model Starter {
+  id            String    @id @default(cuid())
+  userId        String
+  name          String
+  flourType     String
+  createdDate   DateTime
+  feedingRatio  String    // e.g., "1:1:1"
+  lastFed       DateTime?
+  health        Int?      // 1-5 health score
+  notes         String?   @db.Text
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  feedings      StarterFeeding[]
+
+  @@index([userId])
+}
+
+model StarterFeeding {
+  id            String    @id @default(cuid())
+  starterId     String
+  fedAt         DateTime  @default(now())
+  ratio         String
+  observations  String?   @db.Text
+  riseHeight    Float?    // cm
+
+  starter       Starter   @relation(fields: [starterId], references: [id], onDelete: Cascade)
+
+  @@index([starterId])
+  @@index([fedAt])
+}
+
+model Timeline {
+  id            String    @id @default(cuid())
+  userId        String
+  recipeId      String
+  targetTime    DateTime  // When bread should be ready
+  steps         Json      // Array of timeline steps
+  status        TimelineStatus @default(ACTIVE)
+  weather       Json?     // Weather conditions used for calculations
+  createdAt     DateTime  @default(now())
+  completedAt   DateTime?
+
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  recipe        Recipe    @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([recipeId])
+  @@index([status])
+}
+
+enum TimelineStatus {
+  ACTIVE
+  PAUSED
+  COMPLETED
+  CANCELLED
+}
+
+model FlavorPairing {
+  id            String    @id @default(cuid())
+  ingredient1   String
+  ingredient2   String
+  confidence    Float     // 0-1 score
+  compounds     String[]  // Shared flavor compounds
+  cuisine       String[]  // Related cuisines
+  category      String    // sweet/savory
+  createdAt     DateTime  @default(now())
+
+  @@unique([ingredient1, ingredient2])
+  @@index([ingredient1])
+  @@index([ingredient2])
+  @@index([category])
+}
+
+model WeatherLog {
+  id            String    @id @default(cuid())
+  userId        String
+  temperature   Float     // Celsius
+  humidity      Float     // Percentage
+  pressure      Float?    // hPa
+  location      String?
+  timestamp     DateTime  @default(now())
+
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([timestamp])
+}

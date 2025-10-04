@@ -1,0 +1,44 @@
+{
+  "name": "@baker-suite/api",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Baker's Suite API server",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "type-check": "tsc --noEmit",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "clean": "rm -rf dist .turbo node_modules"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "express-rate-limit": "^7.1.5",
+    "dotenv": "^16.3.1",
+    "zod": "^3.22.4",
+    "@prisma/client": "^5.8.0",
+    "@clerk/express": "^1.0.0",
+    "axios": "^1.6.3",
+    "redis": "^4.6.12",
+    "winston": "^3.11.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/express": "^4.17.21",
+    "@types/cors": "^2.8.17",
+    "@types/helmet": "^4.0.0",
+    "typescript": "^5.3.0",
+    "ts-node-dev": "^2.0.0",
+    "eslint": "^8.56.0",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "vitest": "^1.1.0",
+    "@vitest/coverage-v8": "^1.1.0"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "@baker-suite/types",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Shared TypeScript types for Baker's Suite",
+  "main": "index.ts",
+  "types": "index.ts",
+  "scripts": {
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf node_modules"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0"
+  }
+}

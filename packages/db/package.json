@@ -1,0 +1,26 @@
+{
+  "name": "@baker-suite/db",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Prisma database layer for Baker's Suite",
+  "main": "index.ts",
+  "scripts": {
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev",
+    "db:migrate:deploy": "prisma migrate deploy",
+    "db:studio": "prisma studio",
+    "db:seed": "ts-node prisma/seed.ts",
+    "db:reset": "prisma migrate reset",
+    "clean": "rm -rf node_modules"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.8.0"
+  },
+  "devDependencies": {
+    "prisma": "^5.8.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.0",
+    "@types/node": "^20.10.0"
+  }
+}
