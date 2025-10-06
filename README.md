@@ -4,6 +4,10 @@
 
 [![CI](https://github.com/nmang004/baker-suite/workflows/CI/badge.svg)](https://github.com/nmang004/baker-suite/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Progress](https://img.shields.io/badge/Progress-75%25-brightgreen.svg)](PROJECT_STATUS.md)
+[![Status](https://img.shields.io/badge/Status-MVP%20Ready-success.svg)](PROJECT_STATUS.md)
+
+> **Status:** The MVP is ~75% complete with all core features implemented! See [PROJECT_STATUS.md](PROJECT_STATUS.md) for detailed progress.
 
 ## Features
 
@@ -172,12 +176,16 @@ npm run db:reset
 
 ## Documentation
 
+- **[PROJECT_STATUS.md](PROJECT_STATUS.md)** - Current implementation status and progress tracker
 - **[CLAUDE.md](CLAUDE.md)** - Comprehensive development guide for Claude Code
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** - Contribution guidelines
 - **[STRATEGY.md](docs/STRATEGY.md)** - 12-week MVP roadmap and strategic plan
 - **[API.md](docs/API.md)** - API documentation
 - **[ARCHITECTURE.md](docs/ARCHITECTURE.md)** - System architecture
 - **[QUICK_START.md](docs/QUICK_START.md)** - Quick start guide
+- **[BAKE_LOGGING_IMPLEMENTATION.md](BAKE_LOGGING_IMPLEMENTATION.md)** - Bake logging feature documentation
+- **[FLAVOR_DISCOVERY_IMPLEMENTATION.md](FLAVOR_DISCOVERY_IMPLEMENTATION.md)** - Flavor pairing & discovery documentation
+- **[TESTING.md](TESTING.md)** - Testing guide
 
 ## Contributing
 
@@ -195,14 +203,41 @@ We welcome contributions! Please read our [Contributing Guide](CONTRIBUTING.md) 
 
 ## Roadmap
 
+### Completed (v0.9 - MVP Ready!)
 - [x] Core recipe management
 - [x] Baker's percentage calculator
 - [x] Weather API integration
-- [ ] Mobile apps (React Native)
+- [x] Bake logging with statistics
+- [x] Timeline/scheduling with weather awareness
+- [x] Starter tracking with feeding history
+- [x] Flavor pairing database (38 pairings)
+- [x] Recipe discovery & recommendations
+- [x] Authentication with Clerk
+- [x] Full database schema with Prisma
+- [x] Comprehensive API (40+ endpoints)
+- [x] Frontend UI with Next.js 14
+- [x] Shadcn/ui component library integration
+
+### In Progress (v1.0)
+- [ ] Photo upload with Cloudflare R2
+- [ ] Discovery feature integration (dashboard, recipe pages)
+- [ ] Comprehensive testing suite
+- [ ] Deployment to production
+
+### Planned (v1.1+)
+- [ ] PWA with offline support
 - [ ] Community recipe sharing
-- [ ] AI-powered recipe suggestions
-- [ ] Integration with smart kitchen devices
+- [ ] Export/import functionality
+- [ ] Advanced analytics dashboard
+- [ ] Recipe improvement suggestions
+- [ ] Dark mode
+
+### Future (v2.0+)
+- [ ] Mobile apps (React Native)
+- [ ] Smart kitchen device integration
 - [ ] Multi-language support
+- [ ] Premium subscription features
+- [ ] AI-powered recipe generation
 
 ## License
 

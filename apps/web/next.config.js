@@ -10,6 +10,15 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['@radix-ui/react-icons', 'lucide-react'],
   },
+  async redirects() {
+    return [
+      {
+        source: '/flavor-pairing',
+        destination: '/discover/pairings',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

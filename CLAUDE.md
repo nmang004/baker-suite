@@ -253,13 +253,30 @@ export default function MyFeaturePage() {
    - Keep components small (<200 lines)
    - Use composition over prop drilling
 
-3. **API Design:**
+3. **Icons and Visual Elements:**
+   - **ALWAYS use Lucide React icons instead of emojis**
+   - Import icons from 'lucide-react' package
+   - Use semantic icon names (e.g., `<Wheat />` not 🍞, `<Timer />` not ⏱️)
+   - Apply consistent sizing via className (e.g., `className="h-6 w-6"`)
+   - For console/terminal output: use text symbols like [✓] and [✗] instead of emoji
+   - Never add emojis to user-facing UI or code
+   - Example usage:
+     ```tsx
+     import { Wheat, Clock, Thermometer } from 'lucide-react';
+
+     <div className="flex items-center gap-2">
+       <Wheat className="h-6 w-6 text-sunset-orange" />
+       <h1>Baker's Suite</h1>
+     </div>
+     ```
+
+4. **API Design:**
    - RESTful conventions
    - Consistent error responses
    - Validate all inputs with Zod
    - Always return proper HTTP status codes
 
-4. **Testing:**
+5. **Testing:**
    - Unit tests for utilities and services
    - Integration tests for API endpoints
    - E2E tests for critical user flows

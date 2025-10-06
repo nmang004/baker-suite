@@ -49,7 +49,8 @@ export const errorHandler = (
   return res.status(500).json({
     error: {
       code: 'INTERNAL_SERVER_ERROR',
-      message: 'Something went wrong',
+      message: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong',
+      ...(process.env.NODE_ENV === 'development' && { stack: err.stack }),
     },
   });
 };
